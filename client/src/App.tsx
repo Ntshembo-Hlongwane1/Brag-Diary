@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import './styles/App.css';
+import { Home } from './Components/Home/Home';
+import { Footer } from './Components/Home/Footer';
 
 export const App: FC = () => {
   return (
     <div className="App">
-      <h1>Brag Diary</h1>
+      <Home />
+      <Footer />
     </div>
   );
 };

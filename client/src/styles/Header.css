@@ -1,3 +1,4 @@
+/* Nav Bar */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -17,18 +18,59 @@
   width: 100%;
 }
 .nav-left:hover {
-  filter: invert(9%) sepia(36%) saturate(1453%) hue-rotate(168deg)
-    brightness(95%) contrast(107%);
+  filter: invert(39%) sepia(86%) saturate(2933%) hue-rotate(308deg)
+    brightness(96%) contrast(88%);
 }
 
 .nav-right {
   display: flex;
   align-items: center;
   width: 70%;
-  justify-content: space-around;
+  justify-content: end;
   margin-left: auto;
 }
 
 .nav-link {
   margin-right: 0.5rem;
+}
+/* End of NavBar */
+
+/* User Menu */
+.user__menu {
+  color: black;
+}
+
+.global__forum,
+.signin,
+.signup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-menu-link {
+  margin-left: 0.5rem;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  .nav-left {
+    width: 8%;
+  }
+  .nav-link {
+    margin-right: 0.8rem;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    justify-content: end;
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 1294px) {
+  .nav-left {
+    width: 5%;
+  }
 }

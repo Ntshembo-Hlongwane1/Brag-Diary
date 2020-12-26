@@ -10,5 +10,8 @@ router.post("/api/user-signup", (request, response) => {
 router.post("/api/user-signin", (request, response) => {
     Controller.SignIn(request, response);
 });
+router.get("/api/check-user-auth-status", (request, response) => {
+    Controller.isUserLoggedIn(request, response);
+});
 exports.default = router;
 //# sourceMappingURL=Auth.js.map

@@ -87,3 +87,11 @@
 .text a:hover i {
   transform: translateX(10px);
 }
+
+.book-text-cover {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  font-size: 2rem;
+}

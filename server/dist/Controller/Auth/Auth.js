@@ -167,6 +167,23 @@ class AuthController {
             });
         }
     }
+    isUserLoggedIn(request, response) {
+        const userSession = request.session.user || false;
+        try {
+            if (userSession) {
+                const username = userSession.username;
+                return response
+                    .status(200)
+                    .json({ auth_status: true, username: username });
+            }
+            return response.status(200).json({ auth_status: false });
+        }
+        catch (error) {
+            return response
+                .status(500)
+                .json({ msg: "Network Error; Failed to check user auth status" });
+        }
+    }
 }
 exports.AuthController = AuthController;
 //# sourceMappingURL=Auth.js.map

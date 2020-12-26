@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import './styles/App.css';
 import { Home } from './Components/Home/Home';
 import { Footer } from './Components/Home/Footer';
@@ -6,8 +6,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from './Components/Home/Header';
 import { SignUp } from './Components/Auth/SignUp';
 import SignIn from './Components/Auth/SignIn';
+import { useDispatch } from 'react-redux';
+import { userAuthStatus } from './store/Actions/CheckUserAuthStatus/UserAuthStatus';
 
 export const App: FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userAuthStatus());
+  }, [dispatch]);
+
   return (
     <Router>
       <Switch>

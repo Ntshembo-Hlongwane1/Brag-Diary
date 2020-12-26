@@ -1,11 +1,19 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import '../../styles/BookCover.css';
 
 export const BookCover: FC = () => {
+  const { authStatus } = useSelector((state) => state.userAuthStatus);
   return (
     <div className="book">
       <div className="book-img">
-        <h3>Junior's Brag Diary</h3>
+        {authStatus ? (
+          <h3 className="book-text-cover">{`${authStatus.username}'s Brag Diary`}</h3>
+        ) : (
+          <h3 className="book-text-cover">
+            Welcome To Brag Diary Create Account To Start Journal
+          </h3>
+        )}
       </div>
       <div className="text">
         <h2>Lorem Ipsum</h2>

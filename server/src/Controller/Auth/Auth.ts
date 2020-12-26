@@ -10,6 +10,7 @@ config();
 interface Auth {
   SignUp(request: Request, resposne: Response): Response;
   SignIn(request: Request, response: Response): Response;
+  isUserLoggedIn(request: Request, response: Response): Response;
 }
 
 class AuthController implements Auth {
@@ -186,6 +187,25 @@ class AuthController implements Auth {
       return response.status(500).json({
         msg: "Network Error: Failed to sign you in please try again later",
       });
+    }
+  }
+
+  isUserLoggedIn(request: Request, response: Response) {
+    const userSession = request.session.user || false;
+
+    try {
+      if (userSession) {
+        const username = userSession.username;
+        return response
+          .status(200)
+          .json({ auth_status: true, username: username });
+      }
+
+      return response.status(200).json({ auth_status: false });
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ msg: "Network Error; Failed to check user auth status" });
     }
   }
 }

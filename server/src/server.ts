@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 
 import AuthRoute from "./Routes/Auth/Auth";
+import ProfilePicUploadRoute from "./Routes/ProfilePicUpload/ProfielPicUpload";
 config();
 
 const app: Application = express();
@@ -60,6 +61,7 @@ mongoose.connect(mongoURI, connectionOptions, (error) => {
 });
 
 app.use(AuthRoute);
+app.use(ProfilePicUploadRoute);
 //==============================================Server Connection & Configs=============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

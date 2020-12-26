@@ -10,7 +10,7 @@ config();
 interface Auth {
   SignUp(request: Request, resposne: Response): Response;
   SignIn(request: Request, response: Response): Response;
-  isUserLoggedIn(request: Request, response: Response): Response;
+  isUserLoggedIn(request: Request, response: Response): Promise<Response>;
 }
 
 class AuthController implements Auth {
@@ -190,15 +190,21 @@ class AuthController implements Auth {
     }
   }
 
-  isUserLoggedIn(request: Request, response: Response) {
+  async isUserLoggedIn(request: Request, response: Response) {
     const userSession = request.session.user || false;
 
     try {
       if (userSession) {
         const username = userSession.username;
+        const user_id = userSession.id;
+        const user: any = await userModel.findOne({ _id: user_id });
         return response
           .status(200)
-          .json({ auth_status: true, username: username });
+          .json({
+            auth_status: true,
+            username: username,
+            profilePicture: user.profilePicture,
+          });
       }
 
       return response.status(200).json({ auth_status: false });

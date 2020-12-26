@@ -168,21 +168,29 @@ class AuthController {
         }
     }
     isUserLoggedIn(request, response) {
-        const userSession = request.session.user || false;
-        try {
-            if (userSession) {
-                const username = userSession.username;
-                return response
-                    .status(200)
-                    .json({ auth_status: true, username: username });
+        return __awaiter(this, void 0, void 0, function* () {
+            const userSession = request.session.user || false;
+            try {
+                if (userSession) {
+                    const username = userSession.username;
+                    const user_id = userSession.id;
+                    const user = yield Users_1.userModel.findOne({ _id: user_id });
+                    return response
+                        .status(200)
+                        .json({
+                        auth_status: true,
+                        username: username,
+                        profilePicture: user.profilePicture,
+                    });
+                }
+                return response.status(200).json({ auth_status: false });
             }
-            return response.status(200).json({ auth_status: false });
-        }
-        catch (error) {
-            return response
-                .status(500)
-                .json({ msg: "Network Error; Failed to check user auth status" });
-        }
+            catch (error) {
+                return response
+                    .status(500)
+                    .json({ msg: "Network Error; Failed to check user auth status" });
+            }
+        });
     }
 }
 exports.AuthController = AuthController;

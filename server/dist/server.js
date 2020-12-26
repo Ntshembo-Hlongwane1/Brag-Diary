@@ -10,6 +10,7 @@ const connect_mongodb_session_1 = __importDefault(require("connect-mongodb-sessi
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = require("dotenv");
 const Auth_1 = __importDefault(require("./Routes/Auth/Auth"));
+const ProfielPicUpload_1 = __importDefault(require("./Routes/ProfilePicUpload/ProfielPicUpload"));
 dotenv_1.config();
 const app = express_1.default();
 const origin = {
@@ -56,6 +57,7 @@ mongoose_1.default.connect(mongoURI, connectionOptions, (error) => {
     return console.log("Connection MongoDB was successful");
 });
 app.use(Auth_1.default);
+app.use(ProfielPicUpload_1.default);
 //==============================================Server Connection & Configs=============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

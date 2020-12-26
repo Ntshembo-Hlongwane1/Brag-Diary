@@ -9,3 +9,12 @@ html {
   background-color: #f6f9fc;
   color: #f5f5f5f5;
 }
+
+.Router__link {
+  text-decoration: none;
+  color: black;
+}
+
+.Notification-Card {
+  top: 12%;
+}

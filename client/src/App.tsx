@@ -2,12 +2,23 @@ import React, { FC } from 'react';
 import './styles/App.css';
 import { Home } from './Components/Home/Home';
 import { Footer } from './Components/Home/Footer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Header } from './Components/Home/Header';
+import { SignUp } from './Components/Auth/SignUp';
 
 export const App: FC = () => {
   return (
-    <div className="App">
-      <Home />
-      <Footer />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/user-signup" exact={true}>
+          <Header />
+          <SignUp />
+        </Route>
+        <Route path="/" exact={true}>
+          <Home />
+          <Footer />
+        </Route>
+      </Switch>
+    </Router>
   );
 };

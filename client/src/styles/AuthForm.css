@@ -1,0 +1,55 @@
+.AuthForm {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0% auto;
+  margin-top: 4rem;
+}
+
+.AuthForm__header {
+  font-weight: 400;
+  margin-bottom: 1.3rem;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.password,
+.verifiePassword {
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.inputField {
+  width: 100%;
+  /* margin-bottom: 1.3rem; */
+}
+.AuhForm__labels {
+  margin-top: 1.3rem;
+}
+
+.btn {
+  margin-top: 1.3rem;
+  width: 50%;
+  border-radius: 999px;
+  color: black;
+  font-weight: bolder;
+  transition: ease-in-out 0.4s;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+}

@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import PublicIcon from '@material-ui/icons/Public';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
+import { Link } from 'react-router-dom';
 
 export const Header: FC = () => {
   return (
@@ -31,10 +32,12 @@ export const Header: FC = () => {
                 <LockOpenIcon />
                 <h3 className="user-menu-link">SignIn</h3>
               </div>
-              <div className="signup">
-                <LockIcon />
-                <h3 className="user-menu-link">SignUp</h3>
-              </div>
+              <Link to="/user-signup" className="Router__link">
+                <div className="signup">
+                  <LockIcon />
+                  <h3 className="user-menu-link">SignUp</h3>
+                </div>
+              </Link>
             </div>
           </div>
         </Popup>

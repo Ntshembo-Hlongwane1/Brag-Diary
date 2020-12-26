@@ -118,7 +118,7 @@ class AuthController implements Auth {
 
           return response
             .status(201)
-            .json(`Email sent to ${email} for account activation`);
+            .json({ msg: `Email sent to ${email} for account activation` });
         });
       });
     } catch (error) {

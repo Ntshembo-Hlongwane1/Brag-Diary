@@ -6,6 +6,7 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { store } from 'react-notifications-component';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 // import { url } from '../../Utils/BaseUrl';
 
 //Form state
@@ -34,6 +35,7 @@ class SignIn extends Component<any, Partial<FormState>> {
     this.handleFormChange = this.handleFormChange.bind(this);
     this.SignUserIn = this.SignUserIn.bind(this);
     this.ServerResponse = this.ServerResponse.bind(this);
+    this.RedirectUser = this.RedirectUser.bind(this);
   }
   ToggleVisibility(fieldType: string) {
     switch (fieldType) {
@@ -83,6 +85,11 @@ class SignIn extends Component<any, Partial<FormState>> {
     }
   }
 
+  RedirectUser() {
+    const { history } = this.props;
+    history.push('/');
+  }
+
   ServerResponse(status: number, responseMessage: string) {
     switch (status) {
       case 200:
@@ -97,6 +104,9 @@ class SignIn extends Component<any, Partial<FormState>> {
           dismiss: {
             duration: 5000,
             onScreen: true,
+          },
+          onRemoval: () => {
+            this.RedirectUser();
           },
         });
         break;
@@ -113,6 +123,9 @@ class SignIn extends Component<any, Partial<FormState>> {
             duration: 5000,
             onScreen: true,
           },
+          onRemoval: () => {
+            window.location.reload(false);
+          },
         });
         break;
       case 400:
@@ -128,6 +141,10 @@ class SignIn extends Component<any, Partial<FormState>> {
             duration: 5000,
             onScreen: true,
           },
+
+          onRemoval: () => {
+            window.location.reload(false);
+          },
         });
         break;
       case 500:
@@ -142,6 +159,10 @@ class SignIn extends Component<any, Partial<FormState>> {
           dismiss: {
             duration: 5000,
             onScreen: true,
+          },
+
+          onRemoval: () => {
+            window.location.reload(false);
           },
         });
         break;
@@ -206,4 +227,4 @@ class SignIn extends Component<any, Partial<FormState>> {
   }
 }
 
-export { SignIn };
+export default withRouter(SignIn);

@@ -137,7 +137,7 @@ class AuthController {
                 });
                 if (!isUsernameExisting) {
                     return response
-                        .status(400)
+                        .status(404)
                         .json({ msg: "Account with this username does not exist" });
                 }
                 const user = isUsernameExisting; //swapping variable to because user is validated and existing

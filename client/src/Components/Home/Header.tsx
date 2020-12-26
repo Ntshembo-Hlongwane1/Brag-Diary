@@ -28,10 +28,12 @@ export const Header: FC = () => {
                 <PublicIcon />
                 <h3 className="user-menu-link">Global Forum</h3>
               </div>
-              <div className="signin">
-                <LockOpenIcon />
-                <h3 className="user-menu-link">SignIn</h3>
-              </div>
+              <Link to="/user-signin" className="Router__link">
+                <div className="signin">
+                  <LockOpenIcon />
+                  <h3 className="user-menu-link">SignIn</h3>
+                </div>
+              </Link>
               <Link to="/user-signup" className="Router__link">
                 <div className="signup">
                   <LockIcon />

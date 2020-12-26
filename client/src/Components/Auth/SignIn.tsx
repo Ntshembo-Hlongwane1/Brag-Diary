@@ -11,9 +11,7 @@ import axios from 'axios';
 //Form state
 interface FormState {
   username: string | any;
-  email: string | any;
   password: string | any;
-  verfiedPassword: string | any;
   isPasswordVisible: Boolean | any;
   isVerifiedPasswordVisible: Boolean | any;
 }
@@ -23,28 +21,18 @@ enum PasswordVisibility {
   VERIFIED_PASSWORD_FIELD = 'VERIFIED_PASSWORD_FIELD',
 }
 
-// enum BaseURL {
-//   dev = 'http://localhost:5000',
-//   prod = '',
-// }
-
-// export const url =
-//   process.env.NODE_ENV === 'production' ? BaseURL.prod : BaseURL.dev;
-
-class SignUp extends Component<any, Partial<FormState>> {
+class SignIn extends Component<any, Partial<FormState>> {
   constructor(props: any) {
     super(props);
     this.state = {
       username: '',
-      email: '',
       password: '',
-      verfiedPassword: '',
       isPasswordVisible: false,
       isVerifiedPasswordVisible: false,
     };
     this.ToggleVisibility = this.ToggleVisibility.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
-    this.SignUserUp = this.SignUserUp.bind(this);
+    this.SignUserIn = this.SignUserIn.bind(this);
     this.ServerResponse = this.ServerResponse.bind(this);
   }
   ToggleVisibility(fieldType: string) {
@@ -70,16 +58,14 @@ class SignUp extends Component<any, Partial<FormState>> {
       [e.target.id]: e.target.value,
     });
   }
-  async SignUserUp(e: any) {
+  async SignUserIn(e: any) {
     e.preventDefault();
     const form_data: FormData = new FormData();
     form_data.append('username', this.state.username);
-    form_data.append('email', this.state.email);
     form_data.append('password', this.state.password);
-    form_data.append('verifiedPassword', this.state.verfiedPassword);
 
     const BaseURL = {
-      dev: 'http://localhost:5000/api/user-signup',
+      dev: 'http://localhost:5000/api/user-signin',
       prod: '',
     };
 
@@ -89,6 +75,7 @@ class SignUp extends Component<any, Partial<FormState>> {
       const { data, status } = await axios.post(url, form_data, {
         withCredentials: true,
       });
+      console.log(data);
       this.ServerResponse(status, data.msg);
     } catch (error) {
       const { data, status } = error.response;
@@ -98,9 +85,9 @@ class SignUp extends Component<any, Partial<FormState>> {
 
   ServerResponse(status: number, responseMessage: string) {
     switch (status) {
-      case 201:
+      case 200:
         store.addNotification({
-          title: 'SignUp Success!',
+          title: 'SignIn Success!',
           message: responseMessage,
           type: 'success',
           insert: 'top',
@@ -113,9 +100,24 @@ class SignUp extends Component<any, Partial<FormState>> {
           },
         });
         break;
+      case 404:
+        store.addNotification({
+          title: 'SignIn Fail!',
+          message: responseMessage,
+          type: 'danger',
+          insert: 'top',
+          container: 'top-center',
+          animationIn: ['animate__animated', 'animate__fadeIn'],
+          animationOut: ['animate__animated', 'animate__fadeOut'],
+          dismiss: {
+            duration: 5000,
+            onScreen: true,
+          },
+        });
+        break;
       case 400:
         store.addNotification({
-          title: 'SignUp Fail!',
+          title: 'SignIn Fail!',
           message: responseMessage,
           type: 'danger',
           insert: 'top',
@@ -130,7 +132,7 @@ class SignUp extends Component<any, Partial<FormState>> {
         break;
       case 500:
         store.addNotification({
-          title: 'SignUp Fail!',
+          title: 'SignIn Fail!',
           message: responseMessage,
           type: 'warning',
           insert: 'top',
@@ -151,7 +153,7 @@ class SignUp extends Component<any, Partial<FormState>> {
   render() {
     return (
       <div className="AuthForm">
-        <h1 className="AuthForm__header">SignUp</h1>
+        <h1 className="AuthForm__header">SignIn</h1>
         <form className="Form">
           <label className="AuhForm__labels">Username</label>
           <input
@@ -161,16 +163,6 @@ class SignUp extends Component<any, Partial<FormState>> {
             className="inputField"
             id="username"
             value={this.state.username}
-            onChange={this.handleFormChange}
-          />
-          <label className="AuhForm__labels">Email</label>
-          <input
-            type="email"
-            placeholder="email"
-            required
-            className="inputField"
-            id="email"
-            value={this.state.email}
             onChange={this.handleFormChange}
           />
           <div className="password">
@@ -200,43 +192,10 @@ class SignUp extends Component<any, Partial<FormState>> {
               )}
             </div>
           </div>
-          <div className="verifiePassword">
-            <label className="AuhForm__labels">Verified Password</label>
-            <div className="label">
-              <input
-                type={`${
-                  this.state.isVerifiedPasswordVisible ? 'text' : 'password'
-                }`}
-                placeholder="Verified Password"
-                className="inputField"
-                id="verfiedPassword"
-                value={this.state.verfiedPassword}
-                onChange={this.handleFormChange}
-                required
-              />
-              {this.state.isVerifiedPasswordVisible ? (
-                <VisibilityIcon
-                  onClick={() =>
-                    this.ToggleVisibility(
-                      PasswordVisibility.VERIFIED_PASSWORD_FIELD
-                    )
-                  }
-                />
-              ) : (
-                <VisibilityOffIcon
-                  onClick={() =>
-                    this.ToggleVisibility(
-                      PasswordVisibility.VERIFIED_PASSWORD_FIELD
-                    )
-                  }
-                />
-              )}
-            </div>
-          </div>
           <button
             className="btn btn-submit"
             type="submit"
-            onClick={this.SignUserUp}
+            onClick={this.SignUserIn}
           >
             SignUp
           </button>
@@ -247,4 +206,4 @@ class SignUp extends Component<any, Partial<FormState>> {
   }
 }
 
-export { SignUp };
+export { SignIn };

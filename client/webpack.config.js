@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const CodeSpliter = require('babel-plugin-syntax-dynamic-import');
+const webpack = require('webpack');
 
 module.exports = {
   output: {
@@ -54,6 +54,7 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
+    hot: true,
     port: 3000,
   },
 };

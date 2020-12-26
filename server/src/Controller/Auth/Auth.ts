@@ -151,7 +151,7 @@ class AuthController implements Auth {
         });
         if (!isUsernameExisting) {
           return response
-            .status(400)
+            .status(404)
             .json({ msg: "Account with this username does not exist" });
         }
 

@@ -5,11 +5,16 @@ import { Footer } from './Components/Home/Footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from './Components/Home/Header';
 import { SignUp } from './Components/Auth/SignUp';
+import { SignIn } from './Components/Auth/SignIn';
 
 export const App: FC = () => {
   return (
     <Router>
       <Switch>
+        <Route path="/user-signin" exact={true}>
+          <Header />
+          <SignIn />
+        </Route>
         <Route path="/user-signup" exact={true}>
           <Header />
           <SignUp />

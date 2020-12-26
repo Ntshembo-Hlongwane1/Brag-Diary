@@ -3,8 +3,10 @@ import cors from "cors";
 import expressSession from "express-session";
 import MongoStore from "connect-mongodb-session";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
+import { config } from "dotenv";
+
+import AuthRoute from "./Routes/Auth/Auth";
+config();
 
 const app: Application = express();
 const origin = {
@@ -57,6 +59,7 @@ mongoose.connect(mongoURI, connectionOptions, (error) => {
   return console.log("Connection MongoDB was successful");
 });
 
+app.use(AuthRoute);
 //==============================================Server Connection & Configs=============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

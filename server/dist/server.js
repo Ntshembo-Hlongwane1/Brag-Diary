@@ -8,8 +8,9 @@ const cors_1 = __importDefault(require("cors"));
 const express_session_1 = __importDefault(require("express-session"));
 const connect_mongodb_session_1 = __importDefault(require("connect-mongodb-session"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const dotenv_1 = require("dotenv");
+const Auth_1 = __importDefault(require("./Routes/Auth/Auth"));
+dotenv_1.config();
 const app = express_1.default();
 const origin = {
     dev: "http://localhost:3000",
@@ -54,6 +55,7 @@ mongoose_1.default.connect(mongoURI, connectionOptions, (error) => {
     }
     return console.log("Connection MongoDB was successful");
 });
+app.use(Auth_1.default);
 //==============================================Server Connection & Configs=============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

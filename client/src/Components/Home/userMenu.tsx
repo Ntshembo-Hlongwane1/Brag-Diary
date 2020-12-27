@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import PublicIcon from '@material-ui/icons/Public';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PeopleIcon from '@material-ui/icons/People';
 import { Link } from 'react-router-dom';
 import '../../styles/Header.css';
 import { useSelector } from 'react-redux';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import axios from 'axios';
 
 export const UserMenu = () => {
@@ -67,6 +72,27 @@ export const UserMenu = () => {
           <div className="logout signup">
             <ExitToAppIcon />
             <h3 className="user-menu-link">LogOut</h3>
+          </div>
+        ) : null}
+
+        {authStatus && authStatus.isMentor ? (
+          <div className="admin signup">
+            <DashboardIcon />
+            <Popup
+              trigger={<h3 className="user-menu-link">Mentor</h3>}
+              position="left center"
+            >
+              <div className="mentor__menu">
+                <div className="addTrainee signup">
+                  <PersonAddIcon />
+                  <h4 className="user-menu-link">Add Trainee(PD Group)</h4>
+                </div>
+                <div className="trainee__list signup">
+                  <PeopleIcon />
+                  <h4 className="user-menu-link">Trainee List</h4>
+                </div>
+              </div>
+            </Popup>
           </div>
         ) : null}
 

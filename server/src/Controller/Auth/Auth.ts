@@ -198,13 +198,13 @@ class AuthController implements Auth {
         const username = userSession.username;
         const user_id = userSession.id;
         const user: any = await userModel.findOne({ _id: user_id });
-        return response
-          .status(200)
-          .json({
-            auth_status: true,
-            username: username,
-            profilePicture: user.profilePicture,
-          });
+        return response.status(200).json({
+          auth_status: true,
+          username: username,
+          profilePicture: user.profilePicture,
+          isMentor: user.isMentor,
+          pdGroup: user.pdGroup,
+        });
       }
 
       return response.status(200).json({ auth_status: false });

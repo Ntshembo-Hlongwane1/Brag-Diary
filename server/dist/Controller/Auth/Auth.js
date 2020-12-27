@@ -175,12 +175,12 @@ class AuthController {
                     const username = userSession.username;
                     const user_id = userSession.id;
                     const user = yield Users_1.userModel.findOne({ _id: user_id });
-                    return response
-                        .status(200)
-                        .json({
+                    return response.status(200).json({
                         auth_status: true,
                         username: username,
                         profilePicture: user.profilePicture,
+                        isMentor: user.isMentor,
+                        pdGroup: user.pdGroup,
                     });
                 }
                 return response.status(200).json({ auth_status: false });

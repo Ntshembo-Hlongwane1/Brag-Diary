@@ -9,6 +9,8 @@ const userSchema = new mongoose_1.default.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    isMentor: { type: Boolean, default: false },
+    pdGroup: { type: Number, default: 0 },
     profilePicture: { type: String, default: "" },
 });
 exports.userModel = mongoose_1.default.model("userModel", userSchema);

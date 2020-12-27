@@ -79,6 +79,14 @@
 
 /* End of User Menu */
 
+/* Mentor pop menu */
+.mentor__menu {
+  color: black;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+
 /* Media Queries */
 @media screen and (min-width: 768px) {
   .nav-left {

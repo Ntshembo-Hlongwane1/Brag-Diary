@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 
 interface Journal {
   CreateNewJournal(request: Request, response: Response): Response;
+  GetUserJournalList(request: Request, response: Response): Promise<Response>;
 }
 
 class JournalController implements Journal {
@@ -100,6 +101,20 @@ class JournalController implements Journal {
         msg:
           "Network Error: Failed to add your new journal please try again later",
       });
+    }
+  }
+
+  async GetUserJournalList(request: Request, response: Response) {
+    const userSession = request.session.user;
+    const username = userSession.username;
+
+    try {
+      const data = await journalModel.find({ owner: username });
+      return response.status(200).json(data);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ msg: "Network Error: Failed to fetch all your journals" });
     }
   }
 }

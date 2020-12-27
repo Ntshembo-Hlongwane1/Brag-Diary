@@ -9,4 +9,7 @@ router.post("/api/create-new-journal", AuthCheck, (request, response) => {
   Controller.CreateNewJournal(request, response);
 });
 
+router.get("/api/get-all-user-journals", (request, response) => {
+  Controller.GetUserJournalList(request, response);
+});
 export default router;

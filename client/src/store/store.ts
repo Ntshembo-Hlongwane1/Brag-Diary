@@ -1,6 +1,7 @@
 import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { userAuthStatusReducer } from './Reducers/CheckUserAuthStatus/UserAuthStatus';
+import { GetAllUserJournalsReducers } from './Reducers/GetAllUserJournals/GetAllUserjournals';
 
 const initialState = {};
 
@@ -13,6 +14,7 @@ declare global {
 
 const reducer = combineReducers({
   userAuthStatus: userAuthStatusReducer,
+  allUserJournals: GetAllUserJournalsReducers,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

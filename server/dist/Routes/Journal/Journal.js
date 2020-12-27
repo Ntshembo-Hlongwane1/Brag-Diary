@@ -8,5 +8,8 @@ const Controller = new Journal_1.JournalController();
 router.post("/api/create-new-journal", AuthCheck_1.AuthCheck, (request, response) => {
     Controller.CreateNewJournal(request, response);
 });
+router.get("/api/get-all-user-journals", (request, response) => {
+    Controller.GetUserJournalList(request, response);
+});
 exports.default = router;
 //# sourceMappingURL=Journal.js.map

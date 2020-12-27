@@ -9,6 +9,7 @@ import SignIn from './Components/Auth/SignIn';
 import { useDispatch } from 'react-redux';
 import { userAuthStatus } from './store/Actions/CheckUserAuthStatus/UserAuthStatus';
 import { NewJournal } from './Components/Diary/NewJournal';
+import { AllJournals } from './Components/Diary/AllJournals';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ export const App: FC = () => {
         <Route path="/new-journal">
           <Header />
           <NewJournal />
+        </Route>
+        <Route path="/all-journals">
+          <Header />
+          <AllJournals />
         </Route>
         <Route path="/user-signin" exact={true}>
           <Header />

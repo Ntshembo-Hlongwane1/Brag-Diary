@@ -93,6 +93,21 @@ class JournalController {
             });
         }
     }
+    GetUserJournalList(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const userSession = request.session.user;
+            const username = userSession.username;
+            try {
+                const data = yield Journal_1.journalModel.find({ owner: username });
+                return response.status(200).json(data);
+            }
+            catch (error) {
+                return response
+                    .status(500)
+                    .json({ msg: "Network Error: Failed to fetch all your journals" });
+            }
+        });
+    }
 }
 exports.JournalController = JournalController;
 //# sourceMappingURL=Journal.js.map

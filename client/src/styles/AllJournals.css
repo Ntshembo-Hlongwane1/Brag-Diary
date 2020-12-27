@@ -1,0 +1,125 @@
+.User__journals {
+  color: black;
+}
+
+.loading__screen {
+  width: 100%;
+  height: 90vh;
+}
+
+.userJournals__list {
+  display: flex;
+  flex-flow: column;
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+}
+
+.journalList__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 450;
+}
+
+.textJournal__text {
+  display: inline;
+}
+
+.journalList__contet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 30%;
+  padding: 20px;
+  margin: 0 20px 20px;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+  max-width: 700px;
+  text-align: center;
+  border-radius: 4px;
+  margin: auto;
+}
+
+.journalList__contet:hover {
+  cursor: pointer;
+  box-shadow: 0 0 35px -2px rgba(0, 0, 0, 0.2);
+}
+
+.content__header,
+.content__textJournal {
+  margin-bottom: 1.5rem;
+}
+
+.hidden-text {
+  display: none;
+}
+
+.journal__stats {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1.4rem;
+}
+
+.stats__likes,
+.stats__dislikes,
+.stats__comments {
+  display: flex;
+  align-items: center;
+}
+
+.journal-btn {
+  display: none;
+  margin: 0% auto;
+  color: #fff;
+  background-color: #007bb6;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  padding: 0.8rem;
+  border: 1px solid #007bb6;
+  border-radius: 10px;
+}
+
+.journal-btn:active:after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+.journal-btn:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.buttons {
+  margin: 0% auto;
+  margin-top: 1.3rem;
+  text-align: center;
+}
+
+.options {
+  color: black;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  margin: 0% auto;
+}
+
+.journal-option-action {
+  margin-bottom: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}

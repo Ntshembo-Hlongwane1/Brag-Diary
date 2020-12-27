@@ -1,0 +1,11 @@
+.diaryPopMenu {
+  color: black;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.diaryMenu-links {
+  margin-bottom: 1.4rem;
+  cursor: pointer;
+}

@@ -8,6 +8,7 @@ import { SignUp } from './Components/Auth/SignUp';
 import SignIn from './Components/Auth/SignIn';
 import { useDispatch } from 'react-redux';
 import { userAuthStatus } from './store/Actions/CheckUserAuthStatus/UserAuthStatus';
+import { NewJournal } from './Components/Diary/NewJournal';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ export const App: FC = () => {
   return (
     <Router>
       <Switch>
+        <Route path="/new-journal">
+          <Header />
+          <NewJournal />
+        </Route>
         <Route path="/user-signin" exact={true}>
           <Header />
           <SignIn />

@@ -1,0 +1,27 @@
+.NewJournal {
+  color: black;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  margin-top: 2rem;
+  flex-flow: column;
+}
+
+textarea {
+  background: url(http://i.stack.imgur.com/ynxjD.png) repeat-y;
+  background-size: 100%;
+  width: 80%;
+  height: 300px;
+  font: normal 14px verdana;
+  line-height: 25px;
+  padding: 2px 10px;
+  border: solid 1px #ddd;
+}
+
+.journal-btn {
+  width: 40%;
+  padding: 0.4rem 0rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}

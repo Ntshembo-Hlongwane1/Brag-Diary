@@ -9,4 +9,12 @@ router.get("/api/get-trainee-list", isMentorCheck, (request, response) => {
   Controller.GetAllTrainees(request, response);
 });
 
+router.post(
+  "/api/add-trainee-to-pdGroup",
+  isMentorCheck,
+  (request, response) => {
+    Controller.AddTraineeToMentorGroup(request, response);
+  }
+);
+
 export default router;

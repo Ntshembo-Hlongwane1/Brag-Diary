@@ -117,11 +117,11 @@ export const UserMenu = () => {
                   onClick={RedirectUserToSeeAllTrainees}
                 >
                   <PersonAddIcon />
-                  <h4 className="user-menu-link">Add Trainee(PD Group)</h4>
+                  <h4 className="user-menu-link">Add Trainee(PD Grp)</h4>
                 </div>
                 <div className="trainee__list signup">
                   <PeopleIcon />
-                  <h4 className="user-menu-link">Trainee List</h4>
+                  <h4 className="user-menu-link">Trainee List(PD Grp)</h4>
                 </div>
               </div>
             </Popup>

@@ -8,5 +8,8 @@ const Controller = new MentorControls_1.MentorController();
 router.get("/api/get-trainee-list", AdminCheck_1.isMentorCheck, (request, response) => {
     Controller.GetAllTrainees(request, response);
 });
+router.post("/api/add-trainee-to-pdGroup", AdminCheck_1.isMentorCheck, (request, response) => {
+    Controller.AddTraineeToMentorGroup(request, response);
+});
 exports.default = router;
 //# sourceMappingURL=Mentor.js.map

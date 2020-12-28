@@ -11,6 +11,7 @@ interface Auth {
   SignUp(request: Request, resposne: Response): Response;
   SignIn(request: Request, response: Response): Response;
   isUserLoggedIn(request: Request, response: Response): Promise<Response>;
+  Logout(request: Request, response: Response): Response;
 }
 
 class AuthController implements Auth {
@@ -212,6 +213,21 @@ class AuthController implements Auth {
       return response
         .status(500)
         .json({ msg: "Network Error; Failed to check user auth status" });
+    }
+  }
+
+  Logout(request: Request, response: Response) {
+    const userSession = request.session.user;
+    try {
+      if (userSession) {
+        request.session.destroy();
+        return response.status(200).json({ msg: "Logged out" });
+      }
+      response.status(400);
+    } catch (error) {
+      return response
+        .status(500)
+        .json({ msg: "Network Error: Failed to log you out " });
     }
   }
 }

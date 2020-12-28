@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { userAuthStatus } from './store/Actions/CheckUserAuthStatus/UserAuthStatus';
 import { NewJournal } from './Components/Diary/NewJournal';
 import { AllJournals } from './Components/Diary/AllJournals';
+import { TraineeList } from './Components/Mentors/TraineeList';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ export const App: FC = () => {
         <Route path="/new-journal">
           <Header />
           <NewJournal />
+        </Route>
+        <Route path="/all-trainees">
+          <Header />
+          <TraineeList />
         </Route>
         <Route path="/all-journals">
           <Header />

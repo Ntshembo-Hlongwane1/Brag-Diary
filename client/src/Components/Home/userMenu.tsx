@@ -5,7 +5,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PeopleIcon from '@material-ui/icons/People';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../../styles/Header.css';
 import { useSelector } from 'react-redux';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -16,7 +16,7 @@ import axios from 'axios';
 export const UserMenu = () => {
   const { authStatus } = useSelector((state) => state.userAuthStatus);
   const [profile, setProfileImage] = useState<File | any>(null);
-
+  const history = useHistory();
   const handleChange = (e: any) => {
     setProfileImage(e.target.files[0]);
   };
@@ -43,6 +43,33 @@ export const UserMenu = () => {
       const { data, status } = error.resposne;
     }
   };
+
+  const RedirectUser = () => {
+    history.push('/');
+    window.location.reload(false);
+  };
+
+  const Logout = async () => {
+    const baseURL = {
+      dev: 'http://localhost:5000/api/user-logout',
+      prod: '',
+    };
+    const url = baseURL.dev;
+
+    try {
+      const { status } = await axios.get(url, { withCredentials: true });
+      if (status === 200) {
+        RedirectUser();
+      }
+    } catch (error) {
+      window.location.reload(false);
+    }
+  };
+
+  const RedirectUserToSeeAllTrainees = () => {
+    history.push('/all-trainees');
+  };
+
   return (
     <div className="userMenu">
       <div className="user__menu">
@@ -59,7 +86,7 @@ export const UserMenu = () => {
               </div>
             </Link>
           )}
-          {authStatus && authStatus ? null : (
+          {authStatus && authStatus.auth_status ? null : (
             <Link to="/user-signup" className="Router__link">
               <div className="signup">
                 <LockIcon />
@@ -71,7 +98,9 @@ export const UserMenu = () => {
         {authStatus && authStatus.auth_status ? (
           <div className="logout signup">
             <ExitToAppIcon />
-            <h3 className="user-menu-link">LogOut</h3>
+            <h3 className="user-menu-link" onClick={Logout}>
+              LogOut
+            </h3>
           </div>
         ) : null}
 
@@ -83,7 +112,10 @@ export const UserMenu = () => {
               position="left center"
             >
               <div className="mentor__menu">
-                <div className="addTrainee signup">
+                <div
+                  className="addTrainee signup"
+                  onClick={RedirectUserToSeeAllTrainees}
+                >
                   <PersonAddIcon />
                   <h4 className="user-menu-link">Add Trainee(PD Group)</h4>
                 </div>

@@ -16,4 +16,8 @@ router.get("/api/check-user-auth-status", (request, response) => {
   Controller.isUserLoggedIn(request, response);
 });
 
+router.get("/api/user-logout", (request, response) => {
+  Controller.Logout(request, response);
+});
+
 export default router;

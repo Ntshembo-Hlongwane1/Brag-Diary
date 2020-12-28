@@ -38,6 +38,7 @@ export const Header: FC = () => {
               />
             }
             position="bottom right"
+            nested={true}
           >
             <UserMenu />
           </Popup>

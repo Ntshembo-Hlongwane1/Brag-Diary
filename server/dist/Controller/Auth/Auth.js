@@ -192,6 +192,21 @@ class AuthController {
             }
         });
     }
+    Logout(request, response) {
+        const userSession = request.session.user;
+        try {
+            if (userSession) {
+                request.session.destroy();
+                return response.status(200).json({ msg: "Logged out" });
+            }
+            response.status(400);
+        }
+        catch (error) {
+            return response
+                .status(500)
+                .json({ msg: "Network Error: Failed to log you out " });
+        }
+    }
 }
 exports.AuthController = AuthController;
 //# sourceMappingURL=Auth.js.map

@@ -88,6 +88,7 @@ class SignIn extends Component<any, Partial<FormState>> {
   RedirectUser() {
     const { history } = this.props;
     history.push('/');
+    window.location.reload(false);
   }
 
   ServerResponse(status: number, responseMessage: string) {

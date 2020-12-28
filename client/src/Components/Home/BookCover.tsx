@@ -14,11 +14,12 @@ export const BookCover: FC = () => {
   return (
     <div className="book">
       <div className="book-img">
-        {authStatus ? (
+        {authStatus && authStatus.username ? (
           <h3 className="book-text-cover">{`${authStatus.username}'s Brag Diary`}</h3>
         ) : (
           <h3 className="book-text-cover">
-            Welcome To Brag Diary Create Account To Start Journal
+            Welcome To Brag Diary Create Account / Login To Start writing your
+            Journal's
           </h3>
         )}
       </div>

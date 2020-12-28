@@ -51,6 +51,7 @@
 
 .user-menu-link {
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .upload-btn-wrapper {

@@ -12,6 +12,7 @@ const dotenv_1 = require("dotenv");
 const Auth_1 = __importDefault(require("./Routes/Auth/Auth"));
 const ProfielPicUpload_1 = __importDefault(require("./Routes/ProfilePicUpload/ProfielPicUpload"));
 const Journal_1 = __importDefault(require("./Routes/Journal/Journal"));
+const Mentor_1 = __importDefault(require("./Routes/Mentor/Mentor"));
 dotenv_1.config();
 const app = express_1.default();
 const origin = {
@@ -60,6 +61,7 @@ mongoose_1.default.connect(mongoURI, connectionOptions, (error) => {
 app.use(Auth_1.default);
 app.use(ProfielPicUpload_1.default);
 app.use(Journal_1.default);
+app.use(Mentor_1.default);
 //==============================================Server Connection & Configs=============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
